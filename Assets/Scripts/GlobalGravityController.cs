@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class GlobalGravityController : MonoBehaviour
 {
-
     public Vector3 gravityDirection;
     public float gravityForce;
 
-    private Vector3 forward, right, up;
     private SwipeController sc;
 
     void Start()
@@ -18,56 +16,36 @@ public class GlobalGravityController : MonoBehaviour
 
     void Update()
     {
+        if (sc.SwipeUp || sc.SwipeDown ||
+        sc.SwipeUpLeft || sc.SwipeUpRight ||
+        sc.SwipeDownLeft || sc.SwipeDownRight) gravityDirection = CalculateDirection();
+    }
 
-        // /* Getting the camera's forward direction vector */
-        // forward = Camera.main.transform.forward;
+    Vector3 CalculateDirection()
+    {
+		/* Since the Y-Axis is fixed, just check if there was a vertical swipe */
+        if (sc.SwipeUp) return Vector3.up;
+        if (sc.SwipeDown) return Vector3.down;
 
-        // /* Forcing the y vector direction as 0 */
-        // forward.y = 0;
+		/* Get camera perspective vectors */
+        Vector3 forward = Camera.main.transform.forward;
+        Vector3 right = Camera.main.transform.right;
 
-        // /* Normalizing forward direction for padronization */
-        // forward = Vector3.Normalize(forward);
-
-        // /* Setting the right vector based on the forward direction */
-        // right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
-
-        // Vector3 rightMovement = right * moveSpeed * Time.deltaTime * Input.GetAxis("HorizontalKey");
-        // Vector3 upMovement = forward * moveSpeed * Time.deltaTime * Input.GetAxis("VerticalKey");
-
-        // Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
-
-        // transform.forward = heading;
-        // transform.position += rightMovement;
-        // transform.position += upMovement;
-
-        forward = Camera.main.transform.forward;
-        right = Camera.main.transform.right;
-
+		/* Put them on the same plane */
         forward.y = 0;
         right.y = 0;
 
-        Vector3 upRight = Vector3.Normalize(forward + right);
-        Vector3 downLeft = Vector3.Normalize(upRight * -1);
-        Vector3 upLeft = Vector3.Normalize(forward - right);
-        Vector3 downRight = Vector3.Normalize(upLeft * -1);
+		/* Check swipe direction */
+		Vector3 ret = new Vector3();
+		if (sc.SwipeUpRight) ret = Vector3.Normalize(forward + right);
+		else if (sc.SwipeDownLeft) ret = Vector3.Normalize((forward + right) * -1);
+		else if (sc.SwipeUpLeft) ret = Vector3.Normalize(forward - right);
+		else if (sc.SwipeDownRight) ret = Vector3.Normalize((forward - right) * -1);
 
-        if (sc.SwipeUp) ChangeGravity("up", null);
-        else if (sc.SwipeDown) ChangeGravity("down", null);
-		else if (sc.SwipeUpLeft) print(upLeft);
-		else if (sc.SwipeUpRight) print(upRight);
-		else if (sc.SwipeDownLeft) print(downLeft);
-		else if (sc.SwipeDownRight) print(downRight);
-    }
+		/* In order to make a perpendicular vector */
+		if (Mathf.Abs(ret.x) > Mathf.Abs(ret.z)) ret.z = 0f;
+		else ret.x = 0f;
 
-    void ChangeGravity(string vertical, string horizontal)
-    {
-        if (vertical == "up")
-        {
-            if (string.IsNullOrEmpty(horizontal)) gravityDirection = Vector3.up;
-        }
-        else
-        {
-            if (string.IsNullOrEmpty(horizontal)) gravityDirection = Vector3.down;
-        }
+		return ret;
     }
 }

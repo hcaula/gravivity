@@ -7,6 +7,7 @@ public class SwipeController : MonoBehaviour
 
     #region Private attributes
     private bool swipeLeft, swipeRight, swipeUp, swipeDown, swipeUpLeft, swipeUpRight, swipeDownLeft, swipeDownRight;
+    private bool swiped = false;
     private bool isDraging = false;
     private Vector2 startTouch, swipeDelta;
     #endregion
@@ -34,7 +35,7 @@ public class SwipeController : MonoBehaviour
         /* Reset every bool after every frame */
         swipeLeft = swipeRight = swipeUp = swipeDown = swipeUpLeft = swipeUpRight = swipeDownLeft = swipeDownRight = false;
 
-        /* Standalone Inputs */
+        /* Desktop inputs */
         if (Input.GetMouseButtonDown(0))
         {
             isDraging = true;
@@ -45,7 +46,7 @@ public class SwipeController : MonoBehaviour
             Reset();
         }
 
-        /* Mobile Inputs */
+        /* Mobile inputs */
         if (Input.touches.Length > 0)
         {
             if (Input.touches[0].phase == TouchPhase.Began)
@@ -59,7 +60,7 @@ public class SwipeController : MonoBehaviour
             }
         }
 
-        /* Calculate distance */
+        /* Calculate swipe distance */
         swipeDelta = Vector2.zero;
         if (isDraging)
         {
@@ -67,10 +68,9 @@ public class SwipeController : MonoBehaviour
             else if (Input.GetMouseButton(0)) swipeDelta = (Vector2)Input.mousePosition - startTouch;
         }
 
-        /* Check if crossed the deadzone */
+        /* Check if the swipe crossed the deadzone */
         if (swipeDelta.magnitude > deadzone)
         {
-            /* Check direction */
             float x = swipeDelta.x;
             float y = swipeDelta.y;
 

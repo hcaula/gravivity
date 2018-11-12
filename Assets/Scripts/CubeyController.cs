@@ -14,6 +14,8 @@ public class CubeyController : MonoBehaviour {
 		/* Getting the global gravity from the Scene Manager */
 		GameObject smObj = GameObject.Find("Scene Manager").gameObject;
 		gbc = smObj.GetComponent<GlobalGravityController>();
+
+		/* Getting the gravity force (done on Start because this doesn't change) */
 		gravityForce = gbc.gravityForce;
 
 		/* Initializing Rigidbody component */
@@ -22,6 +24,7 @@ public class CubeyController : MonoBehaviour {
 	
 	void Update ()
 	{
+		/* Applying gravity force to Cubey */
 		gravity = gbc.gravityDirection;
 		rb.AddForce(gravity * gravityForce);
 	}
