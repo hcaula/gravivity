@@ -18,7 +18,7 @@ public class GlobalGravityController : MonoBehaviour {
 	void Update()
 	{
 		// /* Getting the camera's forward direction vector */
-		// forward = Camera.main.transform.forward;
+		forward = Camera.main.transform.forward;
 
 		// /* Forcing the y vector direction as 0 */
 		// forward.y = 0;
@@ -38,7 +38,11 @@ public class GlobalGravityController : MonoBehaviour {
 		// transform.position += rightMovement;
 		// transform.position += upMovement;
 
-		if (sc.SwipeUp) ChangeGravity("up", null);
+		if (sc.SwipeUp) 
+		{
+			print(forward);
+			ChangeGravity("up", null);
+		}
 		else if (sc.SwipeDown) ChangeGravity("down", null);
 	}
 

@@ -19,8 +19,8 @@ public class CameraController : MonoBehaviour
     {
 		if (!isRotating)
 		{
-			if (sc.SwipeRight) Rotate("right");
-			else if (sc.SwipeLeft) Rotate("left");
+			if (sc.SwipeRight || Input.GetKeyDown("d")) Rotate("right");
+			else if (sc.SwipeLeft  || Input.GetKeyDown("a")) Rotate("left");
 		}
     }
 
