@@ -1,0 +1,8 @@
+Library
+Packages
+Temp
+Builds
+
+.DS_Store
+*.csproj
+*.sln
