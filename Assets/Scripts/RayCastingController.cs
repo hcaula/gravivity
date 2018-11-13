@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class RayCastingController : MonoBehaviour
 {
-    public GameObject[] targetedPlatforms;
+    public GameObject[] opaquableWalls; /* Walls that can be made transparent */
+    private GameObject[] centers;
 
     void Update()
     {
-		List<GameObject> transparentPlatforms = new List<GameObject>();
+        foreach (GameObject target in opaquableWalls)
+        {
+            TransparentController tc = target.GetComponent<TransparentController>();
+
+            bool hit = ObjectIsOnView(target);
+            if (hit && !tc.GetIsOnView()) tc.SetIsOnView(true);
+            else if (!hit && tc.GetIsOnView()) tc.SetIsOnView(false);
+        }
+    }
+
+    bool ObjectIsOnView(GameObject obj)
+    {
         Vector3 camera = transform.position;
-        GameObject[] centers = GameObject.FindGameObjectsWithTag("Center");
+        centers = GameObject.FindGameObjectsWithTag("Center");
+        bool haveHit = false;
         foreach (GameObject centerObject in centers)
         {
             Vector3 centerPosition = centerObject.transform.position;
@@ -22,30 +35,21 @@ public class RayCastingController : MonoBehaviour
             if (Physics.Raycast(landingRay, out hit, distance))
             {
                 GameObject targetHit = hit.collider.gameObject;
-                TransparentController tc = targetHit.GetComponent<TransparentController>();
-                if (!tc)
-                {
-                    print("Object can't be made transparent because it doesn't have a TransparentController component");
-                }
-                else if (!tc.GetIsOnView())
-                {
-                    tc.SetIsOnView(true);
-                    transparentPlatforms.Add(targetHit);
-                }
+                if (targetHit.GetInstanceID() == obj.GetInstanceID()) haveHit = true;
             }
         }
-
-        foreach (GameObject target in targetedPlatforms)
-        {
-            transparentPlatforms.ForEach(tp =>
-            {
-                if (!GameObject.ReferenceEquals(target, tp))
-                {
-                    TransparentController tc = target.GetComponent<TransparentController>();
-                    if (!tc) print("Object can't be made opaque because it doesn't have a TransparentController component");
-                    else if (tc.GetIsOnView()) tc.SetIsOnView(true);
-                }
-            });
-        }
+        return haveHit;
     }
+
+    // TransparentController tc = targetHit.GetComponent<TransparentController>();
+    //             if (!tc)
+    //             {
+    //                 print("Object can't be made transparent because it doesn't have a TransparentController component");
+    //             }
+    //             else if (!tc.GetIsOnView())
+    //             {
+    //                 tc.SetIsOnView(true);
+    //                 transparentPlatforms.Add(targetHit);
+    //                 // print("hi");
+    //             }
 }

@@ -159,7 +159,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &89708065
 Transform:
@@ -709,7 +709,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 400583930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.6, y: 9.6900015, z: 0.069999695}
+  m_LocalPosition: {x: -1.6, y: 8.47, z: 0.069999695}
   m_LocalScale: {x: 2, y: 3, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -804,12 +804,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc3aaef41eab420bbfebc9bfbd70a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetedPlatforms:
+  opaquableWalls:
   - {fileID: 1252755478}
   - {fileID: 1971870555}
+  - {fileID: 176684855}
   - {fileID: 893179806}
   - {fileID: 180664507}
-  - {fileID: 176684855}
 --- !u!1 &893179806
 GameObject:
   m_ObjectHideFlags: 0
