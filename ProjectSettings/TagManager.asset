@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Scene Manager
   - Wall
+  - CameraTarget
+  - Center
   layers:
   - Default
   - TransparentFX
