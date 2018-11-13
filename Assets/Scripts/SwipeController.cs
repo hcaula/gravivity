@@ -9,12 +9,17 @@ public class SwipeController : MonoBehaviour
     private bool swipeUp, swipeDown, swipeUpLeft, swipeUpRight, swipeDownLeft, swipeDownRight;
     private bool isDraging = false;
     private Vector2 startTouch, swipeDelta;
+
+    private int horizontalThreshold;
+    private int verticalThreshold;
     #endregion
 
     #region Public attributes
     public int deadzone;
-    public int horizontalThreshold;
-    public int verticalThreshold;
+    public int desktopHorThresh;
+    public int desktopVerThreshold;
+    public int mobileHorThresh;
+    public int mobileVerThreshold;
     #endregion
 
     #region Gets and Sets
@@ -37,6 +42,8 @@ public class SwipeController : MonoBehaviour
         {
             isDraging = true;
             startTouch = Input.mousePosition;
+            horizontalThreshold = desktopHorThresh;
+            verticalThreshold = desktopVerThreshold;
         }
         else if (Input.GetMouseButtonUp(0))
         {
@@ -50,6 +57,8 @@ public class SwipeController : MonoBehaviour
             {
                 isDraging = true;
                 startTouch = Input.touches[0].position;
+                horizontalThreshold = mobileHorThresh;
+                verticalThreshold = mobileVerThreshold;
             }
             else if (Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled)
             {
