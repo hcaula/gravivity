@@ -9,13 +9,12 @@ public class TransparentController : MonoBehaviour
     private Animator animator;
     #endregion
 
-    public void SetIsOnView(bool value) { 
-		if (value) print("Hi!");
-		animator.SetBool("IsOnView", value); 
-	}
-
     void Start()
     {
         animator = GetComponent<Animator>();
+		animator.SetBool("IsOnView", false);
 	}
+
+    public void SetIsOnView(bool value) { animator.SetBool("IsOnView", value); }
+	public bool GetIsOnView() { return animator.GetBool("IsOnView"); }
 }
