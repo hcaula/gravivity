@@ -1017,7 +1017,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravityDirection: {x: 0, y: -1, z: 0}
-  gravityForce: 50
+  gravityForce: 25
 --- !u!114 &1582550629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1141,6 +1141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2030910637}
   - component: {fileID: 2030910638}
+  - component: {fileID: 2030910639}
   m_Layer: 0
   m_Name: Camera Target
   m_TagString: Untagged
@@ -1174,3 +1175,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
+--- !u!114 &2030910639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2030910636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b774e4438c55743b5860c840eb399e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFixed: 1
+  xMargin: 1
+  yMargin: 1
+  xSmooth: 8
+  ySmooth: 8
+  maxXAndY: {x: 1, y: 1}
+  minXAndY: {x: 0, y: 0}
