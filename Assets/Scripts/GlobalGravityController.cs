@@ -19,6 +19,9 @@ public class GlobalGravityController : MonoBehaviour
         if (sc.SwipeUp || sc.SwipeDown ||
         sc.SwipeUpLeft || sc.SwipeUpRight ||
         sc.SwipeDownLeft || sc.SwipeDownRight) gravityDirection = CalculateDirection();
+
+        /* Apply gravity force to each object that is affected by it */
+        Physics.gravity = gravityDirection * gravityForce;
     }
 
     Vector3 CalculateDirection()
