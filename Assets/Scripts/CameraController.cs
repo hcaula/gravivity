@@ -7,20 +7,20 @@ public class CameraController : MonoBehaviour
 
 	public int rotationSpeed;
 	private bool isRotating;
-	private SwipeController sc;
+	private DoubleTapController dtc;
 
 	void Start()
 	{
 		isRotating = false;
-		sc = GameObject.Find("Scene Manager").gameObject.GetComponent<SwipeController>();
+		dtc = GameObject.Find("Scene Manager").gameObject.GetComponent<DoubleTapController>();
 	}
 
     void Update()
     {
 		if (!isRotating)
 		{
-			if (sc.SwipeRight || Input.GetKeyDown("d")) Rotate("right");
-			else if (sc.SwipeLeft  || Input.GetKeyDown("a")) Rotate("left");
+			if (dtc.DtRight || Input.GetKeyDown("d")) Rotate("right");
+			else if (dtc.DtLeft  || Input.GetKeyDown("a")) Rotate("left");
 		}
     }
 

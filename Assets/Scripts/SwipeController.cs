@@ -6,8 +6,7 @@ public class SwipeController : MonoBehaviour
 {
 
     #region Private attributes
-    private bool swipeLeft, swipeRight, swipeUp, swipeDown, swipeUpLeft, swipeUpRight, swipeDownLeft, swipeDownRight;
-    private bool swiped = false;
+    private bool swipeUp, swipeDown, swipeUpLeft, swipeUpRight, swipeDownLeft, swipeDownRight;
     private bool isDraging = false;
     private Vector2 startTouch, swipeDelta;
     #endregion
@@ -20,9 +19,7 @@ public class SwipeController : MonoBehaviour
 
     #region Gets and Sets
     public Vector2 SwipeDelta { get { return swipeDelta; } }
-    public bool SwipeLeft { get { return swipeLeft; } }
     public bool SwipeUp { get { return swipeUp; } }
-    public bool SwipeRight { get { return swipeRight; } }
     public bool SwipeDown { get { return swipeDown; } }
     public bool SwipeUpRight { get { return swipeUpRight; } }
     public bool SwipeUpLeft { get { return swipeUpLeft; } }
@@ -33,7 +30,7 @@ public class SwipeController : MonoBehaviour
     void Update()
     {
         /* Reset every bool after every frame */
-        swipeLeft = swipeRight = swipeUp = swipeDown = swipeUpLeft = swipeUpRight = swipeDownLeft = swipeDownRight = false;
+        swipeUp = swipeDown = swipeUpLeft = swipeUpRight = swipeDownLeft = swipeDownRight = false;
 
         /* Desktop inputs */
         if (Input.GetMouseButtonDown(0))
@@ -81,27 +78,18 @@ public class SwipeController : MonoBehaviour
                 {
                     if (x > 0) swipeUpRight = true;
                     else swipeUpLeft = true;
-                } else 
+                }
+                else
                 {
                     if (x > 0) swipeDownRight = true;
                     else swipeDownLeft = true;
                 }
-            } 
+            }
             else
             {
-                /* If we're here, then the swipe was non-diagonal */
-                if (Mathf.Abs(x) > Mathf.Abs(y))
-                {
-                    /* If we're here, then the swipe is horizontal */
-                    if (x < 0) swipeLeft = true;
-                    else swipeRight = true;
-                }
-                else
-                {
-                    /* If we're here, then the swipe is vertical */
-                    if (y < 0) swipeDown = true;
-                    else swipeUp = true;
-                }
+                /* If we're here, then the swipe is vertical */
+                if (y < 0) swipeDown = true;
+                else swipeUp = true;
             }
             Reset();
         }
