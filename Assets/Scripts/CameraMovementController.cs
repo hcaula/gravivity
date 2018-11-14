@@ -7,9 +7,11 @@ public class CameraMovementController : MonoBehaviour
 
 	#region Private attributes
     private Transform player;
-	#endregion
+    private Vector3 moveVelocity;
+    #endregion
 
-	#region Public attributes
+    #region Public attributes
+    public float dampTime = 0.2f;
 	public bool isFixed = true;
     public float xMargin = 1f;
     public float yMargin = 1f;
@@ -65,6 +67,8 @@ public class CameraMovementController : MonoBehaviour
         targetY = Mathf.Clamp(targetY, minXAndY.y, maxXAndY.y);
 
         /* Set the camera's position to the target position with the same z component */
-        transform.position = new Vector3(targetX, targetY, transform.position.z);
+        Vector3 desiredPosition = new Vector3(targetX, targetY, transform.position.z);
+        transform.position = Vector3.SmoothDamp(transform.position, desiredPosition,ref moveVelocity, dampTime);
+        //transform.position = new Vector3(targetX, targetY, transform.position.z);
     }
 }
