@@ -61,6 +61,8 @@ public class ButtonPressController : MonoBehaviour
         /* Restart the timer */
         if (!oneTimePressed && isTimed) {
             timeLeft = time;
+
+            /* Initialize as -1 so that it will always display a different second */
             previousSeconds = -1;
         }
     }
