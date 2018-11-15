@@ -5,8 +5,9 @@ using UnityEngine;
 public class ButtonPressController : MonoBehaviour
 {
     #region Public attributes
-    public bool isTimed;
-    public float time;
+    public bool oneTimePressed; /* If the button is pressed and can never be unpressed */
+    public bool isTimed; /* If the button has a timer */
+    public float time; /* Time that the button will be pressed */
     #endregion
 
     #region Private attributes
@@ -20,9 +21,15 @@ public class ButtonPressController : MonoBehaviour
         an = GetComponent<Animator>();
     }
 
+    public void PressButton(bool press)
+    {
+        an.SetBool("isPressed", press);
+        isPressed = press;
+    }
+
     void Update()
     {
-        if (isPressed && isTimed)
+        if (!oneTimePressed && isPressed && isTimed)
         {
             timeLeft -= Time.deltaTime;
 
@@ -40,17 +47,13 @@ public class ButtonPressController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         PressButton(true);
-        timeLeft = time;
+
+        /* Restart the timer */
+        if (!oneTimePressed && isTimed) timeLeft = time;
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (!isTimed) PressButton(false);
-    }
-
-    void PressButton(bool press)
-    {
-        an.SetBool("isPressed", press);
-        isPressed = press;
+        if (!isTimed && !oneTimePressed) PressButton(false);
     }
 }
