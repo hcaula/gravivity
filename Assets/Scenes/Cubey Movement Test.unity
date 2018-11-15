@@ -501,6 +501,7 @@ GameObject:
   - component: {fileID: 278574741}
   - component: {fileID: 278574746}
   - component: {fileID: 278574745}
+  - component: {fileID: 278574747}
   m_Layer: 0
   m_Name: Cubey
   m_TagString: Player
@@ -602,6 +603,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &278574747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 278574740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f1527dee6f44c58966be8c89d6355c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deadzone: 0
+  desktopHorThresh: 0
+  desktopVerThreshold: 0
+  mobileHorThresh: 0
+  mobileVerThreshold: 0
 --- !u!1 &385121511
 GameObject:
   m_ObjectHideFlags: 0
@@ -1539,6 +1556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b774e4438c55743b5860c840eb399e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dampTime: 0.2
   isFixed: 1
   xMargin: 1
   yMargin: 1
