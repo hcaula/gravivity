@@ -9,14 +9,14 @@ public class SwipeController : MonoBehaviour
     private bool swipeUp, swipeDown, swipeUpLeft, swipeUpRight, swipeDownLeft, swipeDownRight;
     private bool isDraging = false;
     private Vector2 startTouch, swipeDelta;
-
     private int horizontalThreshold;
     private int verticalThreshold;
+    private int deadzone;
     #endregion
 
     #region Public attributes
-    public int deadzone;
-    public int maxzone;
+    public int desktopDeadzone;
+    public int mobileDeadzone;
     public int desktopHorThresh;
     public int desktopVerThreshold;
     public int mobileHorThresh;
@@ -45,6 +45,7 @@ public class SwipeController : MonoBehaviour
             startTouch = Input.mousePosition;
             horizontalThreshold = desktopHorThresh;
             verticalThreshold = desktopVerThreshold;
+            deadzone = desktopDeadzone;
         }
         else if (Input.GetMouseButtonUp(0))
         {
@@ -60,6 +61,7 @@ public class SwipeController : MonoBehaviour
                 startTouch = Input.touches[0].position;
                 horizontalThreshold = mobileHorThresh;
                 verticalThreshold = mobileVerThreshold;
+                deadzone = mobileDeadzone;
             }
             else if (Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled)
             {
@@ -78,12 +80,8 @@ public class SwipeController : MonoBehaviour
         /* Check if the swipe crossed the deadzone */
         if (swipeDelta.magnitude > deadzone)
         {
-            print(swipeDelta.magnitude);
             float x = swipeDelta.x;
             float y = swipeDelta.y;
-
-            print("x: " + x);
-            print("y: " + y);
 
             if (Mathf.Abs(x) > horizontalThreshold && Mathf.Abs(y) > verticalThreshold)
             {

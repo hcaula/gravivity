@@ -588,7 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0476f29c64af5446b973f9990bded7ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 25
+  maxSpeed: 30
 --- !u!54 &278574746
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -615,8 +615,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f1527dee6f44c58966be8c89d6355c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deadzone: 0
-  maxzone: 0
+  desktopDeadzone: 0
+  mobileDeadzone: 0
   desktopHorThresh: 0
   desktopVerThreshold: 0
   mobileHorThresh: 0
@@ -1245,7 +1245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravityDirection: {x: 0, y: -1, z: 0}
-  gravityForce: 50
+  gravityForce: 100
 --- !u!114 &1582550629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1257,9 +1257,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f1527dee6f44c58966be8c89d6355c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deadzone: 30
-  maxzone: 10
-  desktopHorThresh: 2
+  desktopDeadzone: 10
+  mobileDeadzone: 30
+  desktopHorThresh: 15
   desktopVerThreshold: 2
   mobileHorThresh: 15
   mobileVerThreshold: 3
