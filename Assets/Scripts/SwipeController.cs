@@ -16,6 +16,7 @@ public class SwipeController : MonoBehaviour
 
     #region Public attributes
     public int deadzone;
+    public int maxzone;
     public int desktopHorThresh;
     public int desktopVerThreshold;
     public int mobileHorThresh;
@@ -77,8 +78,12 @@ public class SwipeController : MonoBehaviour
         /* Check if the swipe crossed the deadzone */
         if (swipeDelta.magnitude > deadzone)
         {
+            print(swipeDelta.magnitude);
             float x = swipeDelta.x;
             float y = swipeDelta.y;
+
+            print("x: " + x);
+            print("y: " + y);
 
             if (Mathf.Abs(x) > horizontalThreshold && Mathf.Abs(y) > verticalThreshold)
             {
