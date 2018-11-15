@@ -1340,7 +1340,8 @@ MonoBehaviour:
   oneTimePressed: 0
   isTimed: 1
   time: 10
-  interactableObject: {fileID: 1562856018}
+  interactableObjects:
+  - {fileID: 1562856018}
 --- !u!1 &1751808805
 GameObject:
   m_ObjectHideFlags: 0

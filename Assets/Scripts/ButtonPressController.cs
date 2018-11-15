@@ -8,7 +8,7 @@ public class ButtonPressController : MonoBehaviour
     public bool oneTimePressed; /* If the button is pressed and can never be unpressed */
     public bool isTimed; /* If the button has a timer */
     public float time; /* Time that the button will be pressed */
-    public GameObject interactableObject;
+    public GameObject[] interactableObjects;
     #endregion
 
     #region Private attributes
@@ -16,21 +16,31 @@ public class ButtonPressController : MonoBehaviour
     private bool isPressed;
     private float timeLeft;
     private int previousSeconds;
-    private ButtonInteractionController bic;
+    private ButtonInteractionController[] bics;
     #endregion
 
     void Start()
     {
         an = GetComponent<Animator>();
-        bic = interactableObject.GetComponent<ButtonInteractionController>();
-        if (!bic) print("The object associated with this button doesn't have a ButtonInterectionController.");
+
+        /* Get the ButtonIntercationController for each associated object */
+        bics = new ButtonInteractionController[interactableObjects.Length];
+        for (int i = 0; i < interactableObjects.Length; i++)
+        {
+            GameObject interactableObject = interactableObjects[i];
+            ButtonInteractionController bic = interactableObject.GetComponent<ButtonInteractionController>();
+            if (!bic) print("The object associated with this button doesn't have a ButtonInterectionController.");
+            else bics[i] = bic;
+        }
     }
 
     public void PressButton(bool press)
     {
         an.SetBool("isPressed", press);
         isPressed = press;
-        bic.ActivateButtonInteration();
+
+        /* Activate actions for every associated object */
+        foreach(ButtonInteractionController bic in bics) bic.ActivateButtonInteration();
     }
 
     void Update()
