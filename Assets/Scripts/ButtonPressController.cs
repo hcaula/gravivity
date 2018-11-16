@@ -40,7 +40,7 @@ public class ButtonPressController : MonoBehaviour
         isPressed = press;
 
         /* Activate actions for every associated object */
-        foreach(ButtonInteractionController bic in bics) bic.ActivateButtonInteration();
+        foreach (ButtonInteractionController bic in bics) bic.ActivateButtonInteration();
     }
 
     void Update()
@@ -51,7 +51,8 @@ public class ButtonPressController : MonoBehaviour
 
             /* Catch how many seconds are left */
             int secondsLeft = Mathf.CeilToInt(timeLeft % 60);
-            if (secondsLeft != previousSeconds) {
+            if (secondsLeft != previousSeconds)
+            {
                 previousSeconds = secondsLeft;
                 print(previousSeconds);
             }
@@ -66,14 +67,18 @@ public class ButtonPressController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        PressButton(true);
+        if (!isPressed)
+        {
+            PressButton(true);
 
-        /* Restart the timer */
-        if (!oneTimePressed && isTimed) {
-            timeLeft = time;
+            /* Restart the timer */
+            if (!oneTimePressed && isTimed)
+            {
+                timeLeft = time;
 
-            /* Initialize as -1 so that it will always display a different second */
-            previousSeconds = -1;
+                /* Initialize as -1 so that it will always display a different second */
+                previousSeconds = -1;
+            }
         }
     }
 
