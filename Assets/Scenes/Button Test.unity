@@ -185,26 +185,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 114799582169120506, guid: 091d5c49c2ff54f57bf9432df9509e0d,
-        type: 2}
-      propertyPath: raycastDistance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114197901447021872, guid: 091d5c49c2ff54f57bf9432df9509e0d,
-        type: 2}
-      propertyPath: initialState
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114799582169120506, guid: 091d5c49c2ff54f57bf9432df9509e0d,
-        type: 2}
-      propertyPath: rcDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114799582169120506, guid: 091d5c49c2ff54f57bf9432df9509e0d,
-        type: 2}
-      propertyPath: rotationSpeed
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 091d5c49c2ff54f57bf9432df9509e0d, type: 2}
   m_IsPrefabAsset: 0
@@ -217,11 +197,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4581784727749124, guid: 9285ca04207dc440e8d70776a67f3e94, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.94
+      value: 0.63
       objectReference: {fileID: 0}
     - target: {fileID: 4581784727749124, guid: 9285ca04207dc440e8d70776a67f3e94, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 4.27
+      value: 2.06
       objectReference: {fileID: 0}
     - target: {fileID: 4581784727749124, guid: 9285ca04207dc440e8d70776a67f3e94, type: 2}
       propertyPath: m_LocalPosition.z
@@ -246,6 +226,21 @@ Prefab:
     - target: {fileID: 4581784727749124, guid: 9285ca04207dc440e8d70776a67f3e94, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114511850109881764, guid: 9285ca04207dc440e8d70776a67f3e94,
+        type: 2}
+      propertyPath: maxPosition.x
+      value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 114511850109881764, guid: 9285ca04207dc440e8d70776a67f3e94,
+        type: 2}
+      propertyPath: maxPosition.y
+      value: 2.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 114511850109881764, guid: 9285ca04207dc440e8d70776a67f3e94,
+        type: 2}
+      propertyPath: minPosition.y
+      value: 2.06
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9285ca04207dc440e8d70776a67f3e94, type: 2}
@@ -1539,7 +1534,6 @@ GameObject:
   - component: {fileID: 1790626677}
   - component: {fileID: 1790626676}
   - component: {fileID: 1790626675}
-  - component: {fileID: 1790626674}
   m_Layer: 0
   m_Name: Cubey
   m_TagString: Player
@@ -1547,23 +1541,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1790626674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1790626673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77f1527dee6f44c58966be8c89d6355c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desktopDeadzone: 0
-  mobileDeadzone: 0
-  desktopHorThresh: 0
-  desktopVerThreshold: 0
-  mobileHorThresh: 0
-  mobileVerThreshold: 0
 --- !u!114 &1790626675
 MonoBehaviour:
   m_ObjectHideFlags: 0
