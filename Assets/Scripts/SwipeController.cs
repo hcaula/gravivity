@@ -9,18 +9,12 @@ public class SwipeController : MonoBehaviour
     private bool swipeUp, swipeDown, swipeUpLeft, swipeUpRight, swipeDownLeft, swipeDownRight;
     private bool isDraging = false;
     private Vector2 startTouch, swipeDelta;
-    private int horizontalThreshold;
-    private int verticalThreshold;
     private int deadzone;
     #endregion
 
     #region Public attributes
     public int desktopDeadzone;
     public int mobileDeadzone;
-    public int desktopHorThresh;
-    public int desktopVerThreshold;
-    public int mobileHorThresh;
-    public int mobileVerThreshold;
     #endregion
 
     #region Gets and Sets
@@ -43,8 +37,6 @@ public class SwipeController : MonoBehaviour
         {
             isDraging = true;
             startTouch = Input.mousePosition;
-            horizontalThreshold = desktopHorThresh;
-            verticalThreshold = desktopVerThreshold;
             deadzone = desktopDeadzone;
         }
         else if (Input.GetMouseButtonUp(0))
@@ -59,8 +51,6 @@ public class SwipeController : MonoBehaviour
             {
                 isDraging = true;
                 startTouch = Input.touches[0].position;
-                horizontalThreshold = mobileHorThresh;
-                verticalThreshold = mobileVerThreshold;
                 deadzone = mobileDeadzone;
             }
             else if (Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled)
@@ -83,27 +73,41 @@ public class SwipeController : MonoBehaviour
             float x = swipeDelta.x;
             float y = swipeDelta.y;
 
-            if (Mathf.Abs(x) > horizontalThreshold && Mathf.Abs(y) > verticalThreshold)
+            if (y > 0)
             {
-                /* If we're here, then the swipe was diagonal */
-                if (y > 0)
+                float nowTan = x / y;
+                if (nowTan < Mathf.Tan(-30 * Mathf.Deg2Rad))
                 {
-                    if (x > 0) swipeUpRight = true;
-                    else swipeUpLeft = true;
+                    swipeUpLeft = true;
+                }
+                else if (nowTan < Mathf.Tan(30 * Mathf.Deg2Rad))
+                {
+                    swipeUp = true;
                 }
                 else
                 {
-                    if (x > 0) swipeDownRight = true;
-                    else swipeDownLeft = true;
+                    swipeUpRight = true;
                 }
             }
             else
             {
-                /* If we're here, then the swipe is vertical */
-                if (y < 0) swipeDown = true;
-                else swipeUp = true;
+                y = Mathf.Max(1, -y);
+
+                float nowTan = x / y;
+                if (nowTan < Mathf.Tan(-30 * Mathf.Deg2Rad))
+                {
+                    swipeDownLeft = true;
+                }
+                else if (nowTan < Mathf.Tan(30 * Mathf.Deg2Rad))
+                {
+                    swipeDown = true;
+                }
+                else
+                {
+                    swipeDownRight = true;
+                }
             }
-            Reset();
+                Reset();
         }
 
     }
