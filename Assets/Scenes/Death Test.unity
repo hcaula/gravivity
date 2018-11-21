@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427147, b: 0.56452364, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667588, g: 0.48427194, b: 0.564524, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -184,10 +184,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desktopDeadzone: 10
   mobileDeadzone: 30
-  desktopHorThresh: 15
-  desktopVerThreshold: 2
-  mobileHorThresh: 15
-  mobileVerThreshold: 3
 --- !u!114 &225583048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,11 +639,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d986de8013d944998b48a35a6b6569b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fragmentAmount: 10
-  killIt: 0
+  fragmentAmount: 3
+  killIt: 1
+  boomDuration: 2
+  moveDuration: 1
   fragmentPrefab: {fileID: 1018504197688666, guid: a098f4c2c53074048975243a62327e4b,
     type: 2}
-  fragmentSpeed: 20
+  fragmentSpeed: 40
 --- !u!1 &1189754684
 GameObject:
   m_ObjectHideFlags: 0

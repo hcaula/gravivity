@@ -32,12 +32,20 @@ public class DeathController : MonoBehaviour
         deathCounter--;
         if (killIt && !isDying && deathCounter == 0) Die();
         if (isDying) {
-            if (deathState == 1 && deathTime < moveDuration) RedirectFragments();
-            if (deathTime < 0)
+            if (deathTime < moveDuration * 0.01)
             {
+                deathState = 2;
                 isDying = false;
-                for (int i = 0; i < fragmentAmount * fragmentAmount * fragmentAmount; i++) fragments[i].GetComponent<Rigidbody>().velocity=new Vector3(0,0,0);
+                for (int i = 0; i < fragmentAmount * fragmentAmount * fragmentAmount; i++)
+                {
+                    fragments[i].GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 0), ForceMode.Acceleration);
+                    fragments[i].GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+                }
             }
+            else if (deathState == 1 && deathTime < moveDuration) { 
+                RedirectFragments(); 
+            }
+
             deathTime -= Time.deltaTime;
 
         }
@@ -54,11 +62,14 @@ public class DeathController : MonoBehaviour
     void RedirectFragments() {
         for (int i = 0; i < fragmentAmount * fragmentAmount * fragmentAmount; i++)
         {
-            fragments[i].GetComponent<Rigidbody>().AddForce(-forces[i]);
             Vector3 delta = originalPosition - fragments[i].GetComponent<Rigidbody>().position;
-            fragments[i].GetComponent<Rigidbody>().AddForce(delta / deathTime, ForceMode.VelocityChange);
+            Vector3 avgSpeed = delta / deathTime;
+            Vector3 iniSpeed = fragments[i].GetComponent<Rigidbody>().velocity;
+            Vector3 finalSpeed = 2 * avgSpeed - iniSpeed;
+            Vector3 deltaSpeed = finalSpeed - iniSpeed;
+            Vector3 acceleration = deltaSpeed / deathTime;
+            fragments[i].GetComponent<Rigidbody>().AddRelativeForce(acceleration, ForceMode.Acceleration);
         }
-        deathState = 2;
     }
 
 	void AnimateFragments()
