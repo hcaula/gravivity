@@ -59,7 +59,13 @@ public class LaserController : MonoBehaviour
         if (Physics.Raycast(beam.transform.position, beam.transform.forward, out hit, rcDistance))
         {
             /* If the raycast hits, laser ends where it hit */
-            if (hit.collider) lr.SetPosition(1, hit.point);
+            if (hit.collider)
+            {
+                lr.SetPosition(1, hit.point);
+                if (hit.collider.gameObject.name == "Cubey"){
+                    hit.collider.gameObject.GetComponent<DeathController>().Die();
+                }
+            }
 
         } else lr.SetPosition(1, beam.transform.position + (Vector3.forward * rcDistance));
 	}
