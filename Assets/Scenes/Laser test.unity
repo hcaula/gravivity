@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427147, b: 0.56452364, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667588, g: 0.48427194, b: 0.564524, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -843,10 +843,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desktopDeadzone: 10
   mobileDeadzone: 30
-  desktopHorThresh: 15
-  desktopVerThreshold: 2
-  mobileHorThresh: 15
-  mobileVerThreshold: 3
 --- !u!114 &1161378407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -887,6 +883,7 @@ GameObject:
   - component: {fileID: 1273185516}
   - component: {fileID: 1273185515}
   - component: {fileID: 1273185514}
+  - component: {fileID: 1273185521}
   m_Layer: 0
   m_Name: Cubey
   m_TagString: Player
@@ -907,10 +904,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desktopDeadzone: 0
   mobileDeadzone: 0
-  desktopHorThresh: 0
-  desktopVerThreshold: 0
-  mobileHorThresh: 0
-  mobileVerThreshold: 0
 --- !u!114 &1273185515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1005,6 +998,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1273185521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1273185513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d986de8013d944998b48a35a6b6569b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fragmentAmount: 0
+  killIt: 0
+  boomDuration: 1
+  moveDuration: 1
+  fragmentPrefab: {fileID: 0}
+  fragmentSpeed: 0
 --- !u!1 &1317342845
 GameObject:
   m_ObjectHideFlags: 0

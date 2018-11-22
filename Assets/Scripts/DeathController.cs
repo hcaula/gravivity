@@ -5,7 +5,7 @@ using UnityEngine;
 public class DeathController : MonoBehaviour
 {
 
-    public int fragmentAmount;
+    public int fragmentAmount = 3;
     public bool killIt = false;
     private bool isDying = false;
     private int deathCounter = 300;
@@ -14,12 +14,13 @@ public class DeathController : MonoBehaviour
     private float deathTime = 0;
     public float boomDuration = 1;
     public float moveDuration = 1;
+    public float clearDuration = 0.2f;
 
     private GameObject[] fragments = null;
     private Vector3 originalPosition;
 
     public GameObject fragmentPrefab;
-	public float fragmentSpeed;
+	public float fragmentSpeed = 80;
 
 	void Start()
 	{
@@ -32,32 +33,36 @@ public class DeathController : MonoBehaviour
         deathCounter--;
         if (killIt && !isDying && deathCounter == 0) Die();
         if (isDying) {
-            if (deathTime < moveDuration * 0.01)
-            {
-                deathState = 2;
+            if (deathTime < 0){
+                for (int i = 0; i < fragmentAmount * fragmentAmount * fragmentAmount; i++)
+                    Destroy(fragments[i]);
+
+                GetComponent<MeshRenderer>().enabled = true;
+                GetComponent<Rigidbody>().position = originalPosition;
+
                 isDying = false;
+            }
+            else if (deathTime < clearDuration)
+            {
                 for (int i = 0; i < fragmentAmount * fragmentAmount * fragmentAmount; i++)
                 {
                     fragments[i].GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 0), ForceMode.Acceleration);
                     fragments[i].GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-                    Destroy(fragments[i]);
                 }
-                GetComponent<Rigidbody>().position = originalPosition;
-                GetComponent<MeshRenderer>().enabled = true;
             }
-            else if (deathState == 1 && deathTime < moveDuration) { 
+            else if (deathTime < moveDuration + clearDuration) { 
                 RedirectFragments(); 
             }
 
             deathTime -= Time.deltaTime;
-
         }
     }
 
     public void Die()
     {
+        if (isDying) return;
         isDying = true;
-        deathTime = moveDuration + boomDuration;
+        deathTime = moveDuration + boomDuration + clearDuration;
         deathState = 1;
 		AnimateFragments();
     }
@@ -65,12 +70,13 @@ public class DeathController : MonoBehaviour
     void RedirectFragments() {
         for (int i = 0; i < fragmentAmount * fragmentAmount * fragmentAmount; i++)
         {
+            float remMoveTime = deathTime - clearDuration + moveDuration * 0.01f;
             Vector3 delta = originalPosition - fragments[i].GetComponent<Rigidbody>().position;
-            Vector3 avgSpeed = delta / deathTime;
+            Vector3 avgSpeed = delta / remMoveTime;
             Vector3 iniSpeed = fragments[i].GetComponent<Rigidbody>().velocity;
             Vector3 finalSpeed = 2 * avgSpeed - iniSpeed;
             Vector3 deltaSpeed = finalSpeed - iniSpeed;
-            Vector3 acceleration = deltaSpeed / deathTime;
+            Vector3 acceleration = deltaSpeed / remMoveTime;
             fragments[i].GetComponent<Rigidbody>().AddRelativeForce(acceleration, ForceMode.Acceleration);
         }
     }

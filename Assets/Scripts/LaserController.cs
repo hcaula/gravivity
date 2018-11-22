@@ -62,8 +62,9 @@ public class LaserController : MonoBehaviour
             if (hit.collider)
             {
                 lr.SetPosition(1, hit.point);
-                if (hit.collider.gameObject.name == "Cubey"){
-                    hit.collider.gameObject.GetComponent<DeathController>().Die();
+                GameObject cubey = hit.collider.gameObject;
+                if (cubey.name == "Cubey"){
+                    cubey.GetComponent<DeathController>().Die();
                 }
             }
 
