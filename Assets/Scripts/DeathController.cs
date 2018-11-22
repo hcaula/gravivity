@@ -40,7 +40,10 @@ public class DeathController : MonoBehaviour
                 {
                     fragments[i].GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 0), ForceMode.Acceleration);
                     fragments[i].GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+                    Destroy(fragments[i]);
                 }
+                GetComponent<Rigidbody>().position = originalPosition;
+                GetComponent<MeshRenderer>().enabled = true;
             }
             else if (deathState == 1 && deathTime < moveDuration) { 
                 RedirectFragments(); 
