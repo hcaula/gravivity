@@ -16,7 +16,6 @@ public class DeathController : MonoBehaviour
     public float moveDuration = 1;
 
     private GameObject[] fragments = null;
-    private Vector3[] forces;
     private Vector3 originalPosition;
 
     public GameObject fragmentPrefab;
@@ -25,7 +24,8 @@ public class DeathController : MonoBehaviour
 	void Start()
 	{
 		originalPosition = transform.position;
-	}
+        fragments = new GameObject[fragmentAmount * fragmentAmount * fragmentAmount];
+    }
 
     void Update()
     {
@@ -54,7 +54,7 @@ public class DeathController : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         isDying = true;
         deathTime = moveDuration + boomDuration;
@@ -79,8 +79,6 @@ public class DeathController : MonoBehaviour
 	{
 		GetComponent<MeshRenderer>().enabled = false;
 
-		fragments = new GameObject[fragmentAmount * fragmentAmount * fragmentAmount];
-        forces = new Vector3[fragmentAmount * fragmentAmount * fragmentAmount];
 
         for (int i = 0; i < fragmentAmount * fragmentAmount * fragmentAmount; i++)
         {
@@ -90,9 +88,9 @@ public class DeathController : MonoBehaviour
 
             GameObject fragment = Instantiate(fragmentPrefab, this.transform);
 
-            forces[i] = new Vector3(x, y, z) * fragmentSpeed;
+            Vector3 forces = new Vector3(x, y, z) * fragmentSpeed;
 
-            fragment.GetComponent<Rigidbody>().AddForce(forces[i]);
+            fragment.GetComponent<Rigidbody>().AddForce(forces);
 
 			fragments[i] = fragment;
         }
