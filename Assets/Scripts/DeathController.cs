@@ -16,11 +16,13 @@ public class DeathController : MonoBehaviour
     public float moveDuration = 1;
     public float clearDuration = 0.2f;
 
+    public float boomDrag = 3;
+
     private GameObject[] fragments = null;
     private Vector3 originalPosition;
 
     public GameObject fragmentPrefab;
-	public float fragmentSpeed = 80;
+	public float fragmentSpeed = 8;
 
 	void Start()
 	{
@@ -33,7 +35,8 @@ public class DeathController : MonoBehaviour
         deathCounter--;
         if (killIt && !isDying && deathCounter == 0) Die();
         if (isDying) {
-            if (deathTime < 0){
+            if (deathTime < 0)
+            {
                 for (int i = 0; i < fragmentAmount * fragmentAmount * fragmentAmount; i++)
                     Destroy(fragments[i]);
 
@@ -50,8 +53,15 @@ public class DeathController : MonoBehaviour
                     fragments[i].GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
                 }
             }
-            else if (deathTime < moveDuration + clearDuration) { 
+            else if (deathTime < moveDuration + clearDuration) 
+            { 
                 RedirectFragments(); 
+            }
+            else {
+                for (int i = 0; i < fragmentAmount * fragmentAmount * fragmentAmount; i++)
+                {
+                   
+                }
             }
 
             deathTime -= Time.deltaTime;
@@ -94,11 +104,12 @@ public class DeathController : MonoBehaviour
 
             GameObject fragment = Instantiate(fragmentPrefab, this.transform);
 
-            Vector3 forces = new Vector3(x, y, z) * fragmentSpeed;
+            Vector3 vel = new Vector3(x, y, z) * fragmentSpeed;
 
-            fragment.GetComponent<Rigidbody>().AddForce(forces);
+            fragment.GetComponent<Rigidbody>().AddForce(vel, ForceMode.VelocityChange);
+            fragment.GetComponent<Rigidbody>().drag = boomDrag;
 
-			fragments[i] = fragment;
+            fragments[i] = fragment;
         }
 	}
 }
