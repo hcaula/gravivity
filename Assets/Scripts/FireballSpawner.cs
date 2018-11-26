@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireballController : MonoBehaviour {
+public class FireballSpawner : MonoBehaviour {
 
     public Vector3 dir;
     public GameObject fireball;

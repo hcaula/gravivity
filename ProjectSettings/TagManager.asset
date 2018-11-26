@@ -9,6 +9,7 @@ TagManager:
   - CameraTarget
   - Center
   - Portal
+  - Projectile
   layers:
   - Default
   - TransparentFX
