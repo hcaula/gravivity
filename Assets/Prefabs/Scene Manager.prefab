@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114090566771117852}
   - component: {fileID: 114465346316544988}
   - component: {fileID: 114909707823996084}
+  - component: {fileID: 114275407304950384}
   m_Layer: 0
   m_Name: Scene Manager
   m_TagString: Scene Manager
@@ -55,6 +56,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityDirection: {x: 0, y: -1, z: 0}
   gravityForce: 25
+--- !u!114 &114275407304950384
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1026803996616432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aff3c7385e7e7f4599d7e6230cbcca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114465346316544988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -68,10 +80,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desktopDeadzone: 0
   mobileDeadzone: 0
-  desktopHorThresh: 5
-  desktopVerThreshold: 5
-  mobileHorThresh: 15
-  mobileVerThreshold: 15
 --- !u!114 &114909707823996084
 MonoBehaviour:
   m_ObjectHideFlags: 1
