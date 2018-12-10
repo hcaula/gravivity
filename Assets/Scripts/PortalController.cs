@@ -5,14 +5,18 @@ using UnityEngine;
 public class PortalController : MonoBehaviour
 {
 
+    #region Public attributes
     public PortalController exitPortal;
     public string exitDirection;
     public bool lockRotation;
+    #endregion
+
+    #region Private attributes
     private Vector3 direction;
     private float minimumDistance = 2.0f;
-    private float exitSpeed = 1.0f;
     private Rigidbody rb;
     private GlobalGravityController globalGravController;
+    #endregion
 
     void Start()
     {
@@ -51,11 +55,6 @@ public class PortalController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     void OnCollisionEnter(Collision col)
     {

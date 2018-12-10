@@ -5,7 +5,43 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+  - enabled: 0
+    path: Assets/Scenes/Cubey Movement Test.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Stage 01.unity
+    guid: 952057f19f32c614aa83b87933be5a97
+  - enabled: 1
+    path: Assets/Scenes/Stage 02.unity
+    guid: 9e224979c6a1a854a9fd50c1c1d2d15b
+  - enabled: 1
+    path: Assets/Scenes/Stage 03.unity
+    guid: bfead9ec78809d3438e29a3e6b9fff3d
+  - enabled: 1
+    path: Assets/Scenes/Stage 04.unity
+    guid: 6a2087a9082a3e547854882a440826d0
+  - enabled: 1
+    path: Assets/Scenes/Stage 05.unity
+    guid: 852f9dc2efa080f4c8362c73e82b3e28
+  - enabled: 1
+    path: Assets/Scenes/Stage 06.unity
+    guid: 65b5592e8935f8e4ca777d2937d25bbe
+  - enabled: 1
+    path: Assets/Scenes/Stage 07.unity
+    guid: 6b24e43f4414eec499a5d8895a5a0ead
+  - enabled: 1
+    path: Assets/Scenes/Stage 08.unity
+    guid: b5830e89a74611040a637c5684c87c6b
+  - enabled: 1
+    path: Assets/Scenes/Stage 09.unity
+    guid: dbad4c8fdeccf544b800f70d87a382d9
+  - enabled: 1
+    path: Assets/Scenes/Stage 10.unity
+    guid: ba51b712e50ea1d48837ad7c520efb53
+  - enabled: 1
+    path: Assets/Scenes/Stage 11.unity
+    guid: ec0c1dfa538886049853f1d5e74e0044
+  - enabled: 1
+    path: Assets/Scenes/Stage 12.unity
+    guid: 1abc36a5a29767740a4f6e45222ccd82
   m_configObjects: {}

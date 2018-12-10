@@ -18,7 +18,6 @@ public class DeathController : MonoBehaviour
     #endregion
 
     #region Private attributes
-    private int deathState;
     private float deathTime = 0;
     private bool isDying = false;
     private int deathCounter = 300;
@@ -79,7 +78,6 @@ public class DeathController : MonoBehaviour
         {
             isDying = true;
             deathTime = moveDuration + boomDuration + clearDuration;
-            deathState = 1;
             AnimateFragments();
 
             RestartGravity();

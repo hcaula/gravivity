@@ -7,7 +7,6 @@ public class FirebalController : MonoBehaviour {
     public float maxSpeed;
 
     private Rigidbody rb;
-    private DeathController dc;
 
     void Start()
     {
@@ -24,7 +23,7 @@ public class FirebalController : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player")
         {
-            dc = col.gameObject.GetComponent<DeathController>();
+            DeathController dc = col.gameObject.GetComponent<DeathController>();
             dc.Die();
         }
     }
