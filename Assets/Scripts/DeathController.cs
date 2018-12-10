@@ -5,28 +5,31 @@ using UnityEngine;
 public class DeathController : MonoBehaviour
 {
 
+    #region Public attributes
     public int fragmentAmount = 3;
     public bool killIt = false;
-    private bool isDying = false;
-    private int deathCounter = 300;
-
-    private int deathState;
-    private float deathTime = 0;
     public float boomDuration = 1;
     public float moveDuration = 1;
     public float clearDuration = 0.2f;
-
     public float boomDrag = 3;
+
+    public GameObject fragmentPrefab;
+    public float fragmentSpeed = 8;
+    #endregion
+
+    #region Private attributes
+    private int deathState;
+    private float deathTime = 0;
+    private bool isDying = false;
+    private int deathCounter = 300;
 
     private GameObject[] fragments = null;
     private Vector3 originalPosition;
+    #endregion
 
-    public GameObject fragmentPrefab;
-	public float fragmentSpeed = 8;
-
-	void Start()
-	{
-		originalPosition = transform.position;
+    void Start()
+    {
+        originalPosition = transform.position;
         fragments = new GameObject[fragmentAmount * fragmentAmount * fragmentAmount];
     }
 
@@ -34,7 +37,8 @@ public class DeathController : MonoBehaviour
     {
         deathCounter--;
         if (killIt && !isDying && deathCounter == 0) Die();
-        if (isDying) {
+        if (isDying)
+        {
             if (deathTime < 0)
             {
                 for (int i = 0; i < fragmentAmount * fragmentAmount * fragmentAmount; i++)
@@ -53,14 +57,15 @@ public class DeathController : MonoBehaviour
                     fragments[i].GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
                 }
             }
-            else if (deathTime < moveDuration + clearDuration) 
-            { 
-                RedirectFragments(); 
+            else if (deathTime < moveDuration + clearDuration)
+            {
+                RedirectFragments();
             }
-            else {
+            else
+            {
                 for (int i = 0; i < fragmentAmount * fragmentAmount * fragmentAmount; i++)
                 {
-                   
+
                 }
             }
 
@@ -70,14 +75,19 @@ public class DeathController : MonoBehaviour
 
     public void Die()
     {
-        if (isDying) return;
-        isDying = true;
-        deathTime = moveDuration + boomDuration + clearDuration;
-        deathState = 1;
-		AnimateFragments();
+        if (!isDying)
+        {
+            isDying = true;
+            deathTime = moveDuration + boomDuration + clearDuration;
+            deathState = 1;
+            AnimateFragments();
+
+            RestartGravity();
+        }
     }
 
-    void RedirectFragments() {
+    void RedirectFragments()
+    {
         for (int i = 0; i < fragmentAmount * fragmentAmount * fragmentAmount; i++)
         {
             float remMoveTime = deathTime - clearDuration + moveDuration * 0.01f;
@@ -91,16 +101,16 @@ public class DeathController : MonoBehaviour
         }
     }
 
-	void AnimateFragments()
-	{
-		GetComponent<MeshRenderer>().enabled = false;
+    void AnimateFragments()
+    {
+        GetComponent<MeshRenderer>().enabled = false;
 
 
         for (int i = 0; i < fragmentAmount * fragmentAmount * fragmentAmount; i++)
         {
-            float y = ((i/(fragmentAmount * fragmentAmount)) - fragmentAmount / 2) + Random.Range(-1.0f/fragmentAmount, 1.0f / fragmentAmount);
+            float y = ((i / (fragmentAmount * fragmentAmount)) - fragmentAmount / 2) + Random.Range(-1.0f / fragmentAmount, 1.0f / fragmentAmount);
             float x = ((i / fragmentAmount) % fragmentAmount - fragmentAmount / 2) + Random.Range(-1.0f / fragmentAmount, 1.0f / fragmentAmount);
-			float z = (i % fragmentAmount - fragmentAmount / 2) + Random.Range(-1.0f / fragmentAmount, 1.0f / fragmentAmount);
+            float z = (i % fragmentAmount - fragmentAmount / 2) + Random.Range(-1.0f / fragmentAmount, 1.0f / fragmentAmount);
 
             GameObject fragment = Instantiate(fragmentPrefab, this.transform);
 
@@ -111,5 +121,12 @@ public class DeathController : MonoBehaviour
 
             fragments[i] = fragment;
         }
-	}
+    }
+
+    void RestartGravity()
+    {
+        GameObject smng = GameObject.Find("Scene Manager");
+        GlobalGravityController gcc = smng.GetComponent<GlobalGravityController>();
+        gcc.RestartGravity();
+    }
 }

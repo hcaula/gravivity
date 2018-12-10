@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class GlobalGravityController : MonoBehaviour
 {
+    #region Public attributes
     public Vector3 gravityDirection;
     public float gravityForce;
+    #endregion
 
+    #region Private attributes
     private SwipeController sc;
+    private Vector3 initialGravityDirection;
+    #endregion
 
     void Start()
     {
         sc = GameObject.Find("Scene Manager").gameObject.GetComponent<SwipeController>();
+        initialGravityDirection = gravityDirection;
     }
 
     void Update()
@@ -50,5 +56,10 @@ public class GlobalGravityController : MonoBehaviour
 		else ret.x = 0f;
 
 		return ret;
+    }
+
+    public void RestartGravity()
+    {
+        gravityDirection = initialGravityDirection;
     }
 }
