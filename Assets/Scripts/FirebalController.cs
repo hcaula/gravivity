@@ -26,7 +26,6 @@ public class FirebalController : MonoBehaviour {
         {
             dc = col.gameObject.GetComponent<DeathController>();
             dc.Die();
-            Debug.Log("die");
         }
     }
 }

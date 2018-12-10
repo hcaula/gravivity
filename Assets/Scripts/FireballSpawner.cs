@@ -28,10 +28,8 @@ public class FireballSpawner : MonoBehaviour {
         GameObject fb = Instantiate(fireball, marker);
         Rigidbody rb = fb.GetComponent<Rigidbody>();
         rb.velocity.Set(dir.x * speed, dir.y * speed, dir.z * speed);
-        Debug.Log("firebal spawned. Pos "+ pos +  "Dir " + dir);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Time.time >= lastSpawn + spawnDelay)

@@ -2,40 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HoleControler : MonoBehaviour {
+public class HoleControler : MonoBehaviour
+{
 
-    private SceneManager sm;
+    #region Public attributes
     public bool loadNextLevel = true;
     public string sceneToLoad;
-	// Use this for initialization
-	void Start () {
+    #endregion
+
+    #region Private attributes
+    private SceneManager sm;
+    #endregion
+
+    void Start()
+    {
         sm = FindObjectOfType<SceneManager>();
-     
-	}
+        if (!sm) Debug.Log("Scene Manager not found.");
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (sm == null)
+
+        if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Scene Manager not found.");
-        }
-        else
-        {
-            if (collision.gameObject.tag == "Player")
-            {
-                if (loadNextLevel)
-                {
-                    sm.LoadNextScene();
-                }
-                else
-                {
-                    sm.LoadSceneByName(sceneToLoad);
-                }
-            }
+            if (loadNextLevel) sm.LoadNextScene();
+            else sm.LoadSceneByName(sceneToLoad);
         }
     }
-
-
 }
 
 
