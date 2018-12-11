@@ -62,6 +62,8 @@ public class LaserController : MonoBehaviour
             if (hit.collider)
             {
                 lr.SetPosition(1, hit.point);
+                
+                /* Kill Cubey if laser hits him */
                 GameObject cubey = hit.collider.gameObject;
                 if (cubey.name == "Cubey"){
                     cubey.GetComponent<DeathController>().Die();
