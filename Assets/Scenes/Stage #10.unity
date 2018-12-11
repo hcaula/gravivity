@@ -202,6 +202,48 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 296b843c540e42547be54af599890269, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1001 &517074522
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4654804585229220, guid: 45239068c0efa421dab3351d498e0ce1, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654804585229220, guid: 45239068c0efa421dab3351d498e0ce1, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654804585229220, guid: 45239068c0efa421dab3351d498e0ce1, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654804585229220, guid: 45239068c0efa421dab3351d498e0ce1, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654804585229220, guid: 45239068c0efa421dab3351d498e0ce1, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654804585229220, guid: 45239068c0efa421dab3351d498e0ce1, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654804585229220, guid: 45239068c0efa421dab3351d498e0ce1, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654804585229220, guid: 45239068c0efa421dab3351d498e0ce1, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 45239068c0efa421dab3351d498e0ce1, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &843577578
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,13 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc3aaef41eab420bbfebc9bfbd70a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  opaquableWalls:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 1914465330}
+  opaquableWalls: []
 --- !u!81 &843577581
 AudioListener:
   m_ObjectHideFlags: 0
