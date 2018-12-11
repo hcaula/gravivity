@@ -24,7 +24,7 @@ public class LaserController : MonoBehaviour
         an = GetComponent<Animator>();
 
         shooter = transform.GetChild(0).gameObject;
-        beam = transform.GetChild(2).gameObject;
+        beam = transform.GetChild(1).gameObject;
         lr = beam.GetComponent<LineRenderer>();
     }
 
@@ -68,6 +68,6 @@ public class LaserController : MonoBehaviour
                 }
             }
 
-        } else lr.SetPosition(1, beam.transform.position + (Vector3.forward * rcDistance));
+        } else lr.SetPosition(1, beam.transform.position + (beam.transform.forward * rcDistance));
 	}
 }
