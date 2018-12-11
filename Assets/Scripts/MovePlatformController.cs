@@ -42,4 +42,22 @@ public class MovePlatformController : MonoBehaviour
         transform.position = movement;
     }
 
+    void OnCollisionEnter(Collision col) 
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            Transform player = col.gameObject.transform;
+            player.parent = this.gameObject.transform;
+        }
+    }
+
+    void OnCollisionExit(Collision col) 
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            Transform player = col.gameObject.transform;
+            player.parent = null;
+        }
+    }
+
 }
