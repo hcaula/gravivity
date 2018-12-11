@@ -24,11 +24,7 @@ GameObject:
   - component: {fileID: 65205250233606696}
   - component: {fileID: 54371949888654336}
   - component: {fileID: 114737107957848342}
-<<<<<<< HEAD
   - component: {fileID: 114631844690409672}
-=======
-  - component: {fileID: 114133535225704366}
->>>>>>> a4593ec9f487ae88ebae616eb06c30cb9e2a0ba6
   m_Layer: 0
   m_Name: Cubey
   m_TagString: Player
@@ -118,11 +114,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
 --- !u!114 &114631844690409672
-=======
---- !u!114 &114133535225704366
->>>>>>> a4593ec9f487ae88ebae616eb06c30cb9e2a0ba6
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
